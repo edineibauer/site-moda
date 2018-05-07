@@ -1,0 +1,248 @@
+<?php
+
+use Ivory\GoogleMap\Base\Coordinate;
+use Ivory\GoogleMap\Overlay\Marker;
+use Ivory\GoogleMap\Helper\Builder\ApiHelperBuilder;
+use Ivory\GoogleMap\Helper\Builder\MapHelperBuilder;
+use Ivory\GoogleMap\Map;
+
+define('HOMEDEV', DEV && DOMINIO === 'site-moda' ? HOME : HOME . "vendor/conn/site-moda/");
+$tpl = new \Helpers\Template("site-moda");
+$read = new \ConnCrud\Read();
+
+require_once 'inc/header.php';
+require_once 'inc/slide.php';
+?>
+
+    <div class="col color-white padding-64">
+        <section class="container-900 padding-12">
+            <div class="col left padding-12 subtitle-index">
+                <img src="<?= FAVICON ?>" class="container">
+            </div>
+            <div class="rest">
+                <h2 class="font-medium upper text-theme margin-0 padding-8">showroom completo com as marcas mais
+                    desejadas</h2>
+                <p class="font-xxlarge upper color-text-grey-dark margin-0 font-bold">
+                    onde acontece os maiores negócios de moda no rio grande do sul e paraná
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div class="col padding-8">
+        <?php
+        $read->exeRead("slide_marcas", "ORDER BY id LIMIT 5");
+        if ($read->getResult()) {
+            $data['slide'] = $read->getResult();
+            foreach ($data['slide'] as $i => $slide) {
+                if (!empty($slide['imagem']))
+                    $data['slide'][$i]['imagem'] = json_decode($slide['imagem'], true)[0]['url'];
+            }
+            $data["homedev"] = HOMEDEV;
+
+            $data['listMarcas'] = "";
+            $read->exeRead("marcas", "ORDER BY id DESC LIMIT 16");
+            if ($read->getResult()) {
+                foreach ($read->getResult() as $i => $m) {
+                    if ($i < 15)
+                        $data['listMarcas'] .= (!empty($data['listMarcas']) ? ($i === $read->getRowCount() - 1 ? " E " : ", ") : "") . "<b class='upper'>{$m['titulo']}</b>";
+                }
+
+                if ($read->getRowCount() === 16)
+                    $data['listMarcas'] .= " entre outras ";
+            }
+
+            $tpl->show("half_slide_text", $data);
+        }
+        ?>
+    </div>
+
+    <div class="col color-white padding-48">
+        <div class="col padding-64 hide-small"></div>
+        <div class="col container-900">
+            <section class="padding-24 align-center">
+                <p class="color-text-grey-light upper" id="empresa">espaço moderno, sofisticado e repleto de lançamentos</p>
+                <h2 class="font-xxlarge upper text-theme-d font-bold margin-0 padding-8">showroom completo com as marcas
+                    mais
+                    desejadas para você potencializar seus negócios!</h2>
+            </section>
+
+            <div class="col padding-12">
+                <?php
+                $data = [
+                    "dev" => DEV && DOMINIO === "site-moda" ? "" : "vendor/conn/site-moda/",
+                    "images" => [
+                        "bolsa-john-john",
+                        "modelo-foto-lanca-perfume",
+                        "modelo-lanca-perfume",
+                        "modelo-myfavorite",
+                        "modelo-lanca-perfume2"
+                    ]
+                ];
+                $tpl->show("gallery-horizontal-des-align-5", $data);
+                ?>
+            </div>
+            <section class="col padding-32">
+                <div class="col padding-8"></div>
+                <article class="col s12 m4 padding-medium margin-bottom">
+                    <header class="col align-center margin-bottom">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/joia.svg">
+                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Quem Somos</h2>
+                    </header>
+                    <div class="col color-text-grey align-center">
+                        Somos focados em resultados reais e com excelência no relacionamento com os clientes. As marcas
+                        são geridas pelos melhores profissionais.
+                    </div>
+                </article>
+                <article class="col s12 m4 padding-medium margin-bottom">
+                    <header class="col align-center margin-bottom">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/closet.svg">
+                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Showroom Completo</h2>
+                    </header>
+                    <div class="col color-text-grey align-center">
+                        Possuímos dois showrooms completos e sofisticados, para oferecer aos visitantes conforto e luxo
+                        em todo o momento da visitação.
+                    </div>
+                </article>
+                <article class="col s12 m4 padding-medium margin-bottom">
+                    <header class="col align-center margin-bottom">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/cabide.svg">
+                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">O que fazemos</h2>
+                    </header>
+                    <div class="col color-text-grey align-center">
+                        Nosso comercial percorre os estados para visitar os lojistas, assim, ofertas as novidades que
+                        nossas grandes marcas oferecem.
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+
+    <div class="col color-black padding-32" id="marcas">
+        <div class="col container-900">
+            <div class="col s6 m3 padding-xlarge">
+                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-lancaperfume.svg" class="col">
+            </div>
+            <div class="col s6 m3 padding-xlarge">
+                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-myfavorite.svg" class="col">
+            </div>
+            <div class="col s6 m3 padding-xlarge">
+                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-animale.png" class="col">
+            </div>
+            <div class="col s6 m3 padding-xlarge">
+                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-jonh-jonh.png" class="col">
+            </div>
+        </div>
+    </div>
+
+    <div class="col color-black showroom">
+        <div class="col container-900">
+            <section class="col s12 m4 align-center">
+                <p class="upper color-text-grey-light font-small">visite</p>
+                <h3 class="upper color-text-white padding-0 font-bold">Nossos Showrooms</h3>
+                <p class="color-text-grey-light font-small">
+                    A <?= SITENAME ?> possuí showrooms modernos e sofisticados, com excelênte infraestrutura para
+                    expressar os valores das marcas e oferecer a melhor experiência aos visitantes. Estamos localizados
+                    em pontos estratégicos nas capitais do Rio Grande do Sul e Paraná.
+                </p>
+
+                <div class="col padding-12">
+                    <button class="btn upper color-border-white border opacity hover-opacity-off hover-shadow"
+                            style="margin: auto; float: initial">mais fotos
+                    </button>
+                </div>
+            </section>
+            <div class="col s12 m8 padding-left">
+                <?php
+                $read->exeRead("showroom", "ORDER BY id DESC LIMIT 7");
+                if ($read->getResult()) {
+                    foreach ($read->getResult() as $i => $room) {
+                        $showroom['slide'][$i] = $room;
+                        $showroom['slide'][$i]['imagem'] = str_replace('\\', '/', json_decode($room['imagem'], true)[0]['url']);
+                    }
+
+                    $tpl->show("slide-vertical-two", $showroom);
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col color-white padding-64">
+        <div class="container-900">
+            <p class="upper color-text-grey-dark padding-16 align-center">instagram @HUBDAMODA</p>
+            <div class="col">
+                <?php
+                $read->exeRead("instagram", "ORDER BY id LIMIT 5");
+                if ($read->getResult()) {
+                    foreach ($read->getResult() as $foto) {
+                        $instagram['images'][] = str_replace('\\', '/', json_decode($foto['imagem'], true)[0]['url']);
+                    }
+
+                    $tpl->show("gallery-horizontal-align-5", $instagram);
+                }
+                ?>
+            </div>
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="col s12 m6 background-contact">
+        </div>
+        <div class="col s12 m6 padding-64 color-grey-light">
+            <p class="upper color-text-grey font-small align-center">contato</p>
+            <p class="upper color-text-grey-dark font-xlarge font-bold align-center margin-0">
+                lojista, entre em contato
+            </p>
+
+            <div class="col container">
+                <div class="col container">
+                    <?php
+                    $form = new \FormCrud\Form("contato");
+                    $form->setAutoSave(false);
+                    $form->setSaveButtonIcon("");
+                    $form->setSaveButtonText("ENVIAR");
+                    $form->setSaveButtonClass("btnSaveContato center-block");
+                    $form->showForm();
+                    ?>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col color-white padding-64" id="contato">
+        <section class="container-1200 padding-32">
+            <?php
+            $read->exeRead("lojas", "ORDER BY id LIMIT 2");
+            if ($read->getResult()) {
+                foreach ($read->getResult() as $i => $end)
+                    $lojas[$i] = \Entity\Entity::read("lojas", $end['id']);
+            }
+/*
+            foreach ($lojas as $i => $loja) {
+                $map = new Map();
+                $map->setCenter(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude']));
+                $map->setMapOption('zoom', 18);
+                $map->setMapOption('width', 1500);
+                $map->setMapOption('height', 500);
+                $map->setHtmlAttribute("width", "1500");
+                $map->setStylesheetOption("width", "100%");
+                $map->setStylesheetOption("height", "300px");
+                $map->getOverlayManager()->addMarker(new Marker(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude'])));
+
+                $mapHelper = MapHelperBuilder::create()->build();
+                $apiHelper = ApiHelperBuilder::create()->setKey('AIzaSyDDITs_UW4aZ-bTiS9IUlu3yzk958oW1QU')->build();
+
+                $lojas[$i]['map'] = $mapHelper->render($map);
+                $lojas[$i]['map'] .= $apiHelper->render([$map]);
+            }*/
+
+            $mapData['lojas'] = $lojas;
+            $mapData['homedev'] = HOMEDEV;
+            $tpl->show("map-m2", $mapData);
+            ?>
+        </section>
+    </div>
+<?php
+require_once 'inc/footer.php';
