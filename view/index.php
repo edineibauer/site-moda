@@ -20,7 +20,7 @@ require_once 'inc/slide.php';
                 <img src="<?= FAVICON ?>" class="container">
             </div>
             <div class="rest">
-                <h2 class="font-medium upper text-theme margin-0 padding-8">showroom completo com as marcas mais
+                <h2 class="font-medium upper color-text-grey margin-0 padding-8">showroom completo com as marcas mais
                     desejadas</h2>
                 <p class="font-xxlarge upper color-text-grey-dark margin-0 font-bold">
                     onde acontece os maiores negócios de moda no rio grande do sul e paraná
