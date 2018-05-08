@@ -1,3 +1,8 @@
+function mensagemEnviada() {
+    toast("Mensagem Enviada");
+    $("#form_contato").find("input, textarea").val("");
+}
+
 let slideIndexMarca = 1;
 let slideIndexMarcaNome = 1;
 let slideIndexShowroom = 0;

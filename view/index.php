@@ -206,6 +206,7 @@ require_once 'inc/slide.php';
                 $form->setSaveButtonIcon("");
                 $form->setSaveButtonText("ENVIAR");
                 $form->setSaveButtonClass("btnSaveContato center-block s-margin-top");
+                $form->setCallback("mensagemEnviada");
                 $form->showForm();
                 ?>
             </div>
