@@ -13,6 +13,6 @@
   "require": {
     "php": "^7.0",
     "conn/dashboard": "dev-master",
-    "egeloen/google-map": "^2.0"
+    "egeloen/google-map": "^2.0@dev"
   }
 }

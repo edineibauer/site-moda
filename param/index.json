@@ -2,5 +2,6 @@
   "title": "Hub da Moda",
   "font": [
     "Poppins"
-  ]
+  ],
+  "css": ["animate"]
 }

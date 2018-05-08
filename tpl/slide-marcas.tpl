@@ -1,5 +1,5 @@
-<div class="col relative no-select">
-    <div class="display-container slide-marcas-nomes padding-16">
+<div class="col relative no-select carrosel">
+    <div class="slide-marcas-nomes padding-16 carrosel-child">
         {foreach item=s key=i from=$marcas}
             <img class="col s12 m3 slide-marcas-nomes-img s-padding-left-64 s-padding-right-64 padding-xlarge no-select" src="{$s.imagem}">
         {/foreach}

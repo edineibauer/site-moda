@@ -1,15 +1,16 @@
-let slideIndex = 1;
 let slideIndexMarca = 1;
 let slideIndexMarcaNome = 1;
 let slideIndexShowroom = 0;
-const carTime = 6000;
 const carMarcaTime = 3000;
-showDivs(slideIndex);
 showSlideMarcasNome(slideIndexMarcaNome);
 showSlideMarca(slideIndexMarca);
 plusSlideShowroom(slideIndexShowroom);
-let car = setTimeout(plusDivs, carTime);
 let carm = setTimeout(plusMarcaNome, carMarcaTime);
+
+const carTime = 6000;
+let car = setTimeout(plusDivs, carTime);
+let slideIndex = 1;
+showDivs(slideIndex);
 
 function plusDivs(n) {
     n = typeof n === "undefined" ? 1 : n;
@@ -29,11 +30,13 @@ function currentDiv(n) {
     showDivs(slideIndex = n);
 }
 
-function showDivs(n) {
+function showDivs(id, n) {
+
+
+
     let i;
     let x = document.getElementsByClassName("mySlides");
-    let xx = document.getElementsByClassName("mySlidesTitulo");
-    let xxx = document.getElementsByClassName("slide-social");
+    let $slide = $(".mySlides, .mySlidesTitulo, .slide-social");
     let dots = document.getElementsByClassName("demo");
     if (n > x.length) {
         slideIndex = 1
@@ -41,17 +44,13 @@ function showDivs(n) {
     if (n < 1) {
         slideIndex = x.length
     }
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-        xx[i].style.display = "none";
-        xxx[i].style.display = "none";
-    }
+    for (i = 0; i < x.length; i++)
+        $slide[i].style.display = "none";
+
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" color-white", "");
     }
-    x[slideIndex - 1].style.display = "block";
-    xx[slideIndex - 1].style.display = "block";
-    xxx[slideIndex - 1].style.display = "block";
+    $slide[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " color-white";
 }
 
