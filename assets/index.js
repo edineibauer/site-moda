@@ -55,10 +55,10 @@ function showDivs(id, n) {
         $slide[i].style.display = "none";
 
     for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" color-white", "");
+        dots[i].removeClass("color-white");
     }
     $slide[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " color-white";
+    dots[slideIndex - 1].addClass("color-white");
 }
 
 function showSlideMarcasNome(n) {
@@ -75,10 +75,10 @@ function showSlideMarcasNome(n) {
         x[i].style.display = "none";
 
     for (i = 0; i < dots.length; i++)
-        dots[i].className = dots[i].className.replace(" color-white", "");
+        dots[i].removeClass("color-white");
 
     x[slideIndexMarcaNome - 1].style.display = "block";
-    dots[slideIndexMarcaNome - 1].className += " color-white";
+    dots[slideIndexMarcaNome - 1].addClass("color-white");
 }
 
 function plusSlideMarca(n) {
