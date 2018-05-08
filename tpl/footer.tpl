@@ -1,4 +1,4 @@
-<footer class="col color-black display-container footer">
+<footer class="col color-black display-container footer s-padding-left-32 s-padding-right-32">
     <div class="container-1200 padding-48 col">
         <div class="col s12 m3 padding-small margin-bottom">
             <p class="upper font-small font-bold margin-0 margin-bottom">Endereço</p>
@@ -31,7 +31,7 @@
                 </a>
             </ul>
         </div>
-        <div class="col s12 m5 padding-small margin-bottom">
+        <div class="col s12 m5 padding-small margin-bottom hide-small">
             <p class="upper font-small font-bold margin-0 margin-bottom">newsletter</p>
             <div class="col padding-small">
                 <div class="col" style="max-width: 65%;margin-right: 10px">

@@ -14,15 +14,16 @@ require_once 'inc/header.php';
 require_once 'inc/slide.php';
 ?>
 
-    <div class="col color-white padding-64">
+    <div class="col color-white padding-64 s-padding-4">
         <section class="container-900 padding-12">
-            <div class="col left padding-12 subtitle-index">
+            <div class="col left padding-12 subtitle-index hide-small">
                 <img src="<?= FAVICON ?>" class="container">
             </div>
-            <div class="rest">
-                <h2 class="font-medium upper color-text-grey margin-0 padding-8">showroom completo com as marcas mais
+            <div class="rest s-padding-large">
+                <h2 class="font-medium s-font-small upper color-text-grey margin-0 padding-8">showroom completo com as
+                    marcas mais
                     desejadas</h2>
-                <p class="font-xxlarge upper color-text-grey-dark margin-0 font-bold">
+                <p class="font-xxlarge s-font-medium upper color-text-grey-dark margin-0 font-bold">
                     onde acontece os maiores negócios de moda no rio grande do sul e paraná
                 </p>
             </div>
@@ -57,17 +58,19 @@ require_once 'inc/slide.php';
         ?>
     </div>
 
-    <div class="col color-white padding-48">
+    <div class="col color-white padding-48 s-padding-32">
         <div class="col padding-64 hide-small"></div>
-        <div class="col container-900">
-            <section class="padding-24 align-center">
-                <p class="color-text-grey-light upper" id="empresa">espaço moderno, sofisticado e repleto de lançamentos</p>
-                <h2 class="font-xxlarge upper text-theme-d font-bold margin-0 padding-8">showroom completo com as marcas
+        <div class="col container-900 s-padding-left-32 s-padding-right-32">
+            <section class="padding-24 s-padding-0 align-center s-align-left">
+                <p class="color-text-grey upper s-font-small" id="empresa">espaço moderno, sofisticado e repleto de
+                    lançamentos</p>
+                <h2 class="font-xxlarge s-font-medium upper text-theme-d font-bold margin-0 padding-8">showroom completo
+                    com as marcas
                     mais
                     desejadas para você potencializar seus negócios!</h2>
             </section>
 
-            <div class="col padding-12">
+            <div class="col padding-12 s-padding-0">
                 <?php
                 $data = [
                     "dev" => DEV && DOMINIO === "site-moda" ? "" : "vendor/conn/site-moda/",
@@ -86,7 +89,7 @@ require_once 'inc/slide.php';
                 <div class="col padding-8"></div>
                 <article class="col s12 m4 padding-medium margin-bottom">
                     <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/joia.svg">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/joia.svg" class="padding-bottom" style="height: 40px">
                         <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Quem Somos</h2>
                     </header>
                     <div class="col color-text-grey align-center">
@@ -96,7 +99,7 @@ require_once 'inc/slide.php';
                 </article>
                 <article class="col s12 m4 padding-medium margin-bottom">
                     <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/closet.svg">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/closet.svg" class="padding-bottom" style="height: 40px">
                         <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Showroom Completo</h2>
                     </header>
                     <div class="col color-text-grey align-center">
@@ -106,7 +109,7 @@ require_once 'inc/slide.php';
                 </article>
                 <article class="col s12 m4 padding-medium margin-bottom">
                     <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/cabide.svg">
+                        <img src="<?= HOMEDEV ?>assets/img/icon/cabide.svg" class="padding-bottom" style="height: 40px">
                         <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">O que fazemos</h2>
                     </header>
                     <div class="col color-text-grey align-center">
@@ -120,33 +123,34 @@ require_once 'inc/slide.php';
 
     <div class="col color-black padding-32" id="marcas">
         <div class="col container-900">
-            <div class="col s6 m3 padding-xlarge">
-                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-lancaperfume.svg" class="col">
-            </div>
-            <div class="col s6 m3 padding-xlarge">
-                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-myfavorite.svg" class="col">
-            </div>
-            <div class="col s6 m3 padding-xlarge">
-                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-animale.png" class="col">
-            </div>
-            <div class="col s6 m3 padding-xlarge">
-                <img src="<?= HOMEDEV ?>assets/img/marcas/logo-jonh-jonh.png" class="col">
-            </div>
+            <?php
+            $read->exeRead("marcas", "ORDER BY id LIMIT 8");
+            if ($read->getResult()) {
+                $data["homedev"] = HOMEDEV;
+                $data['marcas'] = $read->getResult();
+                foreach ($data['marcas'] as $i => $marca)
+                    $data['marcas'][$i]['imagem'] = \Helpers\Helper::convertImageJson($marca['imagem']);
+
+                $tpl->show("slide-marcas", $data);
+            }
+
+            ?>
         </div>
     </div>
 
-    <div class="col color-black showroom">
+    <div class="col showroom">
         <div class="col container-900">
             <section class="col s12 m4 align-center">
                 <p class="upper color-text-grey-light font-small">visite</p>
-                <h3 class="upper color-text-white padding-0 font-bold">Nossos Showrooms</h3>
-                <p class="color-text-grey-light font-small">
+                <h3 class="upper color-text-white padding-0 font-bold s-font-large">Nossos Showrooms</h3>
+                <p class="color-text-grey-light font-small s-padding-left-32 s-padding-right-32"
+                   style="line-height: 22px;">
                     A <?= SITENAME ?> possuí showrooms modernos e sofisticados, com excelênte infraestrutura para
                     expressar os valores das marcas e oferecer a melhor experiência aos visitantes. Estamos localizados
                     em pontos estratégicos nas capitais do Rio Grande do Sul e Paraná.
                 </p>
 
-                <div class="col padding-12">
+                <div class="col padding-12 hide-small">
                     <button class="btn upper color-border-white border opacity hover-opacity-off hover-shadow"
                             style="margin: auto; float: initial">mais fotos
                     </button>
@@ -168,7 +172,7 @@ require_once 'inc/slide.php';
         </div>
     </div>
 
-    <div class="col color-white padding-64">
+    <div class="col color-white padding-64 s-padding-8">
         <div class="container-900">
             <p class="upper color-text-grey-dark padding-16 align-center">instagram @HUBDAMODA</p>
             <div class="col">
@@ -183,29 +187,27 @@ require_once 'inc/slide.php';
                 }
                 ?>
             </div>
-
         </div>
+        <div class="col s-padding-24 padding-0"></div>
     </div>
     <div class="col">
         <div class="col s12 m6 background-contact">
         </div>
-        <div class="col s12 m6 padding-64 color-grey-light">
+        <div class="col s12 m6 padding-64 s-padding-48 color-grey-light">
             <p class="upper color-text-grey font-small align-center">contato</p>
-            <p class="upper color-text-grey-dark font-xlarge font-bold align-center margin-0">
+            <p class="upper color-text-grey-dark font-xlarge s-font-large font-bold align-center margin-0">
                 lojista, entre em contato
             </p>
 
-            <div class="col container">
-                <div class="col container">
-                    <?php
-                    $form = new \FormCrud\Form("contato");
-                    $form->setAutoSave(false);
-                    $form->setSaveButtonIcon("");
-                    $form->setSaveButtonText("ENVIAR");
-                    $form->setSaveButtonClass("btnSaveContato center-block");
-                    $form->showForm();
-                    ?>
-                </div>
+            <div class="col padding-left-32 padding-right-32 s-padding-left-16 s-padding-right-16">
+                <?php
+                $form = new \FormCrud\Form("contato");
+                $form->setAutoSave(false);
+                $form->setSaveButtonIcon("");
+                $form->setSaveButtonText("ENVIAR");
+                $form->setSaveButtonClass("btnSaveContato center-block s-margin-top");
+                $form->showForm();
+                ?>
             </div>
 
         </div>
@@ -219,24 +221,24 @@ require_once 'inc/slide.php';
                 foreach ($read->getResult() as $i => $end)
                     $lojas[$i] = \Entity\Entity::read("lojas", $end['id']);
             }
-/*
-            foreach ($lojas as $i => $loja) {
-                $map = new Map();
-                $map->setCenter(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude']));
-                $map->setMapOption('zoom', 18);
-                $map->setMapOption('width', 1500);
-                $map->setMapOption('height', 500);
-                $map->setHtmlAttribute("width", "1500");
-                $map->setStylesheetOption("width", "100%");
-                $map->setStylesheetOption("height", "300px");
-                $map->getOverlayManager()->addMarker(new Marker(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude'])));
+            /*
+                        foreach ($lojas as $i => $loja) {
+                            $map = new Map();
+                            $map->setCenter(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude']));
+                            $map->setMapOption('zoom', 18);
+                            $map->setMapOption('width', 1500);
+                            $map->setMapOption('height', 500);
+                            $map->setHtmlAttribute("width", "1500");
+                            $map->setStylesheetOption("width", "100%");
+                            $map->setStylesheetOption("height", "300px");
+                            $map->getOverlayManager()->addMarker(new Marker(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude'])));
 
-                $mapHelper = MapHelperBuilder::create()->build();
-                $apiHelper = ApiHelperBuilder::create()->setKey('AIzaSyDDITs_UW4aZ-bTiS9IUlu3yzk958oW1QU')->build();
+                            $mapHelper = MapHelperBuilder::create()->build();
+                            $apiHelper = ApiHelperBuilder::create()->setKey('AIzaSyDDITs_UW4aZ-bTiS9IUlu3yzk958oW1QU')->build();
 
-                $lojas[$i]['map'] = $mapHelper->render($map);
-                $lojas[$i]['map'] .= $apiHelper->render([$map]);
-            }*/
+                            $lojas[$i]['map'] = $mapHelper->render($map);
+                            $lojas[$i]['map'] .= $apiHelper->render([$map]);
+                        }*/
 
             $mapData['lojas'] = $lojas;
             $mapData['homedev'] = HOMEDEV;

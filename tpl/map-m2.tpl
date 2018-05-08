@@ -1,14 +1,14 @@
 {foreach item=e key=i from=$lojas}
     <article class="col s12 m6 padding-small">
         <div class="col">
-            <div class="col" style="width: 105px">
+            <div class="col hide-small" style="width: 105px">
                 <img src="{$homedev}assets/img/icon/endereco.svg">
             </div>
-            <div class="rest">
+            <div class="rest s-padding-left-16 s-padding-right-16">
                 <header class="col">
-                    <h1 class="padding-0">{$e.endereco.cep.cidade.estado.estado}</h1>
+                    <h1 class="padding-0 font-xlarge s-font-large">{$e.endereco.cep.cidade.estado.estado}</h1>
                 </header>
-                <p class="col margin-0 color-text-grey">
+                <p class="col margin-0 color-text-grey font-small padding-8">
                     {$e.endereco.logradouro} {$e.endereco.numero}, {$e.endereco.bairro}
                     <br> {$e.endereco.cep.cep} {$e.endereco.cep.cidade.cidade}
                     , {$e.endereco.cep.cidade.estado.estado}
