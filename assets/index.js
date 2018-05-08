@@ -1,6 +1,8 @@
 function mensagemEnviada() {
     toast("Mensagem Enviada");
-    $("#form_contato").find("input, textarea").val("");
+    setTimeout(function () {
+        $("#form_contato").find("input, textarea").val("");
+    },500);
 }
 
 let slideIndexMarca = 1;
