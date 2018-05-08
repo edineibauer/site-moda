@@ -1,0 +1,9 @@
+{
+  "*": [
+    "pais",
+    "estado",
+    "cep",
+    "cidade",
+    "endereco"
+  ]
+}
