@@ -2,10 +2,10 @@
     <div class="display-container overflow-hidden slide">
         <div class="center display-middle font-jumbo color-text-white slide-nav relative">
             <div class="left no-select" onclick="plusDivs(-1)">
-                <img src="{$home}assets/img/arrow-left.png" class="no-select">
+                <img src="{$homedev}assets/img/arrow-left.png" class="no-select">
             </div>
             <div class="right no-select" onclick="plusDivs(1)">
-                <img src="{$home}assets/img/arrow-left.png" class="no-select">
+                <img src="{$homedev}assets/img/arrow-left.png" class="no-select">
             </div>
         </div>
         {foreach item=s key=i from=$slide}

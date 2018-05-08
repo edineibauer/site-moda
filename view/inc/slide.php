@@ -8,5 +8,6 @@ if ($read->getResult()) {
         if (!empty($slide['logo']))
             $data['slide'][$i]['logo'] = \Helpers\Helper::convertImageJson($slide['logo']);
     }
+    $data['homedev'] = HOMEDEV;
     $tpl->show("slide", $data);
 }
