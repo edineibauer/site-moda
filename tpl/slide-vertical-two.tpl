@@ -5,8 +5,7 @@
                 <div class="left padding-medium padding-12 no-select pointer" onclick="plusSlideShowroom(-1)">
                     volta
                 </div>
-                <div class="right padding-medium padding-12 no-select pointer" onclick="plusSlideShowroom(1)"
-                     style="margin-right: 15%;">
+                <div class="right padding-medium padding-12 no-select pointer" onclick="plusSlideShowroom(1)">
                     próxima
                 </div>
             </div>
