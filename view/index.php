@@ -87,36 +87,16 @@ require_once 'inc/slide.php';
             </div>
             <section class="col padding-32">
                 <div class="col padding-8"></div>
-                <article class="col s12 m4 padding-medium margin-bottom">
-                    <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/joia.svg" class="padding-bottom" style="height: 40px">
-                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Quem Somos</h2>
-                    </header>
-                    <div class="col color-text-grey align-center">
-                        Somos focados em resultados reais e com excelência no relacionamento com os clientes. As marcas
-                        são geridas pelos melhores profissionais.
-                    </div>
-                </article>
-                <article class="col s12 m4 padding-medium margin-bottom">
-                    <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/closet.svg" class="padding-bottom" style="height: 40px">
-                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">Showroom Completo</h2>
-                    </header>
-                    <div class="col color-text-grey align-center">
-                        Possuímos dois showrooms completos e sofisticados, para oferecer aos visitantes conforto e luxo
-                        em todo o momento da visitação.
-                    </div>
-                </article>
-                <article class="col s12 m4 padding-medium margin-bottom">
-                    <header class="col align-center margin-bottom">
-                        <img src="<?= HOMEDEV ?>assets/img/icon/cabide.svg" class="padding-bottom" style="height: 40px">
-                        <h2 class="margin-0 padding-0 font-xlarge color-text-grey-dark">O que fazemos</h2>
-                    </header>
-                    <div class="col color-text-grey align-center">
-                        Nosso comercial percorre os estados para visitar os lojistas, assim, ofertas as novidades que
-                        nossas grandes marcas oferecem.
-                    </div>
-                </article>
+                <?php
+                $read->exeRead("descricao_da_empresa", "ORDER BY id LIMIT 3");
+                if($read->getResult()) {
+                    foreach ($read->getResult() as $item) {
+                        $item['imagem'] = \Helpers\Helper::convertImageJson($item['imagem']);
+                        $tpl->show("descricao_icon", $item);
+                    }
+                }
+
+                ?>
             </section>
         </div>
     </div>
