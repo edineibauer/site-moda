@@ -124,47 +124,35 @@ jssor_2_slider_init = function() {
 
     var jssor_2_options = {
         $AutoPlay: 1,
-        $SlideDuration: 160,
-        $SlideEasing: $Jease$.$InOutQuad,
+        $Idle: 0,
+        $SlideDuration: 5000,
+        $SlideEasing: $Jease$.$Linear,
+        $PauseOnHover: 4,
         $SlideWidth: 200,
-        $SlideSpacing: 100
+        $SlideSpacing: 100,
+        $Align: 0
     };
 
     var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_2_options);
 
-    //make sure to clear margin of the slider container element
-    jssor_2_slider.$Elmt.style.margin = "";
+    /*#region responsive code begin*/
 
-    const MAX_WIDTH = 990;
-    const MAX_HEIGHT = 60;
-    const MAX_BLEEDING = 0;
+    var MAX_WIDTH = 990;
 
     function ScaleSlider() {
         var containerElement = jssor_2_slider.$Elmt.parentNode;
         var containerWidth = containerElement.clientWidth;
 
         if (containerWidth) {
-            var originalHeight = jssor_2_slider.$OriginalHeight();
-            var containerHeight = containerElement.clientHeight || originalHeight;
 
-            var expectedHeight = Math.min(MAX_HEIGHT || containerHeight, containerHeight);
+            var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
 
-            //scale the slider to expected size
-            jssor_2_slider.$ScaleSize(MAX_WIDTH, expectedHeight, MAX_BLEEDING);
-
-            //position slider at center in vertical orientation
-            jssor_2_slider.$Elmt.style.top = ((containerHeight - expectedHeight) / 2) + "px";
-
-            //position slider at center in horizontal orientation
-            jssor_2_slider.$Elmt.style.left = ((containerWidth - MAX_WIDTH) / 2) + "px";
+            jssor_2_slider.$ScaleWidth(MAX_WIDTH);
         }
         else {
             window.setTimeout(ScaleSlider, 30);
         }
     }
-
-    /*ios disable scrolling and bounce effect*/
-    $Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
 
     ScaleSlider();
 
@@ -172,4 +160,4 @@ jssor_2_slider_init = function() {
     $Jssor$.$AddEvent(window, "resize", ScaleSlider);
     $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
     /*#endregion responsive code end*/
-};
+}
