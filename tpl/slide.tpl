@@ -12,7 +12,7 @@
          style="cursor:default;position:relative;top:0px;left:0px;width:800px;height:380px;overflow:hidden;">
         {foreach item=s key=i from=$slide}
             <div data-p="147.50">
-                <img data-u="image" src="{$s.imagem}"/>
+                <img data-u="image" src="{$s.imagem}" class="slide_jssor_1_img"/>
                 <div class="mySlidesTitulo center display-middle color-text-white" style="width: 60%">
                     {if !empty($s.descricao)}
                         <h2 class="upper slide-desc">{$s.descricao}</h2>
