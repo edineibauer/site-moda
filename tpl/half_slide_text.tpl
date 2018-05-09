@@ -4,10 +4,10 @@
             <div class="display-container overflow-hidden slide-marcas">
                 <div class="center display-bottomright slide-marcas-nav">
                     <div class="display-bottomright s-display-bottommiddle s-margin-0 font-light upper font-small" style="margin-right: 8%;">
-                        <div class="left padding-medium padding-12 no-select" onclick="plusSlideMarca(-1)">
+                        <div class="left padding-medium padding-12 no-select pointer" onclick="plusSlideMarca(-1)">
                             volta
                         </div>
-                        <div class="right padding-medium padding-12 no-select" onclick="plusSlideMarca(1)">
+                        <div class="right padding-medium padding-12 no-select pointer" onclick="plusSlideMarca(1)">
                             próxima
                         </div>
                     </div>

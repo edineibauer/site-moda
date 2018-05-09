@@ -2,75 +2,12 @@
     font-family: Poppins;
 }
 
-.carrosel {
-    overflow: hidden;
+.slide-desc {
+    font-size: 20px;
 }
 
-.carrosel-child {
-    width: 9000px;
-}
-
-.mySlides {
-    display: none
-}
-
-.left, .right, .badge {
-    cursor: pointer
-}
-
-.badge {
-    height: 13px;
-    width: 13px;
-    padding: 0
-}
-
-.slide-nav {
-    width: 100%;
-    z-index: 2
-}
-
-.slide, .slide .mySlides {
-    height: 400px;
-    width: auto;
-    min-width: 100%;
-}
-
-.slide-nav div {
-    height: 100px;
-    padding: 0;
-    z-index: 10;
-    position: relative;
-}
-
-.slide .mySlidesTitulo header {
-    z-index: 1
-}
-
-.slide .mySlidesTitulo header span {
-    border: solid 1px rgba(255, 255, 255, 0.2);
-    width: 290px;
-}
-
-.slide .mySlidesTitulo header span h1 {
-    padding: 0 20px
-}
-
-.slide .mySlidesTitulo header img {
-    height: 28px;
-}
-
-.slide-social {
-    width: 30px;
-    margin-left: 5%;
-}
-
-.slide-nav div img {
-    width: 50px;
-    height: auto
-}
-
-.slide-nav div:last-child {
-    transform: rotate(180deg);
+.slide-img-logo {
+    height: 30px;
 }
 
 .header {
@@ -243,7 +180,7 @@ textarea {
     fill: #000;
     fill-opacity: 0.5;
     stroke: #fff;
-    stroke-width: 1200;
+    stroke-width: 1200px;
     stroke-miterlimit: 10;
     stroke-opacity: 0.3;
 }
@@ -275,7 +212,7 @@ textarea {
 .jssora051 .a {
     fill: none;
     stroke: #fff;
-    stroke-width: 360;
+    stroke-width: 360px;
     stroke-miterlimit: 10;
 }
 
@@ -350,40 +287,6 @@ textarea {
         height: 470px
     }
 
-    .slide .mySlidesTitulo h2 {
-        margin-left: -40px;
-    }
-
-    .slide-nav {
-        width: 95%
-    }
-
-    .slide-nav div {
-        height: 104px;
-        padding: 12px 24px;
-    }
-
-    .slide, .slide .mySlides {
-        height: 600px;
-    }
-
-    .slide-nav div img {
-        width: 70px;
-    }
-
-    .slide .mySlidesTitulo header img {
-        height: 53px;
-    }
-
-    .slide .mySlidesTitulo header span {
-        border: solid 1px rgba(255, 255, 255, 0.3);
-        width: auto;
-    }
-
-    .slide .mySlidesTitulo header span h1 {
-        padding: 0 60px
-    }
-
     .slide-marcas-nav {
         width: 95%;
         background: #000;
@@ -400,5 +303,11 @@ textarea {
     .gallery_horizontal_img_not_align:nth-child(2) img, .gallery_horizontal_img_not_align:nth-child(4) img {
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+    .slide-desc {
+        font-size: 10px;
+    }
+    .slide-img-logo {
+        height: 70px;
     }
 }

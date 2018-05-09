@@ -15,7 +15,7 @@
                 <img data-u="image" src="{$s.imagem}"/>
                 <div class="mySlidesTitulo center display-middle color-text-white" style="width: 60%">
                     {if !empty($s.descricao)}
-                        <h2 class="font-tiny upper">{$s.descricao}</h2>
+                        <h2 class="upper slide-desc">{$s.descricao}</h2>
                     {/if}
                     {if !empty($s.logo) || !empty($s.titulo)}
                         <br>
@@ -23,7 +23,7 @@
                         <span class="left">
                             <h1 class="font-xxxlarge upper font-light left padding-0">
                                 {if !empty($s.logo)}
-                                    <img src="{$s.logo}" class="left" style="height: 30px">
+                                    <img src="{$s.logo}" class="left slide-img-logo" style="height: 30px">
                                 {elseif !empty($s.titulo)}
                                     {$s.titulo}
                                 {/if}
