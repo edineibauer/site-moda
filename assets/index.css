@@ -205,6 +205,12 @@ textarea {
     max-height: 600px
 }
 
+#jssor_2 {
+    height: 60px!important;;
+    max-height: 60px;
+    min-height: 60px
+}
+
 /*jssor slider loading skin double-tail-spin css*/
 .jssorl-004-double-tail-spin img {
     animation-name: jssorl-004-double-tail-spin;

@@ -6,40 +6,9 @@ function mensagemEnviada() {
 }
 
 let slideIndexMarca = 1;
-let slideIndexMarcaNome = 1;
 let slideIndexShowroom = 0;
-const carMarcaTime = 3000;
-showSlideMarcasNome(slideIndexMarcaNome);
 showSlideMarca(slideIndexMarca);
 plusSlideShowroom(slideIndexShowroom);
-let carm = setTimeout(plusMarcaNome, carMarcaTime);
-
-function plusMarcaNome(n) {
-    slideIndexMarcaNome = typeof n === "undefined" ? slideIndexMarcaNome + 1 : n;
-    showSlideMarcasNome(slideIndexMarcaNome);
-    clearTimeout(carm);
-    carm = setTimeout(plusMarcaNome, carMarcaTime);
-}
-
-function showSlideMarcasNome(n) {
-    let i;
-    let x = document.getElementsByClassName("slide-marcas-nomes-img");
-    let $dots = $(".demo-slide-marcas-nome");
-    if (n > x.length) {
-        slideIndexMarcaNome = 1
-    }
-    if (n < 1) {
-        slideIndexMarcaNome = x.length
-    }
-    for (i = 0; i < x.length; i++)
-        x[i].style.display = "none";
-
-    for (i = 0; i < $dots.length; i++)
-        $dots.eq(i).removeClass("color-white");
-
-    x[slideIndexMarcaNome - 1].style.display = "block";
-    $dots.eq(slideIndexMarcaNome - 1).addClass("color-white");
-}
 
 function plusSlideMarca(n) {
     showSlideMarca(slideIndexMarca += n);
@@ -97,6 +66,7 @@ $(function () {
         }
     });
     jssor_1_slider_init();
+    jssor_2_slider_init();
 });
 
 jssor_1_slider_init = function() {
@@ -140,6 +110,61 @@ jssor_1_slider_init = function() {
             window.setTimeout(ScaleSlider, 30);
         }
     }
+
+    ScaleSlider();
+
+    $Jssor$.$AddEvent(window, "load", ScaleSlider);
+    $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    /*#endregion responsive code end*/
+};
+
+
+jssor_2_slider_init = function() {
+
+    var jssor_2_options = {
+        $AutoPlay: 1,
+        $SlideDuration: 160,
+        $SlideEasing: $Jease$.$InOutQuad,
+        $SlideWidth: 200,
+        $SlideSpacing: 100
+    };
+
+    var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_2_options);
+
+    //make sure to clear margin of the slider container element
+    jssor_2_slider.$Elmt.style.margin = "";
+
+    const MAX_WIDTH = 990;
+    const MAX_HEIGHT = 60;
+    const MAX_BLEEDING = 0;
+
+    function ScaleSlider() {
+        var containerElement = jssor_2_slider.$Elmt.parentNode;
+        var containerWidth = containerElement.clientWidth;
+
+        if (containerWidth) {
+            var originalHeight = jssor_2_slider.$OriginalHeight();
+            var containerHeight = containerElement.clientHeight || originalHeight;
+
+            var expectedHeight = Math.min(MAX_HEIGHT || containerHeight, containerHeight);
+
+            //scale the slider to expected size
+            jssor_2_slider.$ScaleSize(MAX_WIDTH, expectedHeight, MAX_BLEEDING);
+
+            //position slider at center in vertical orientation
+            jssor_2_slider.$Elmt.style.top = ((containerHeight - expectedHeight) / 2) + "px";
+
+            //position slider at center in horizontal orientation
+            jssor_2_slider.$Elmt.style.left = ((containerWidth - MAX_WIDTH) / 2) + "px";
+        }
+        else {
+            window.setTimeout(ScaleSlider, 30);
+        }
+    }
+
+    /*ios disable scrolling and bounce effect*/
+    $Jssor$.$AddEvent(document, "touchmove", function(event){event.touches.length < 2 && $Jssor$.$CancelEvent(event);});
 
     ScaleSlider();
 
