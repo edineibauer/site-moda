@@ -14,18 +14,6 @@ showSlideMarca(slideIndexMarca);
 plusSlideShowroom(slideIndexShowroom);
 let carm = setTimeout(plusMarcaNome, carMarcaTime);
 
-const carTime = 6000;
-let car = setTimeout(plusDivs, carTime);
-let slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-    n = typeof n === "undefined" ? 1 : n;
-    showDivs(slideIndex += n);
-    clearTimeout(car);
-    car = setTimeout(plusDivs, carTime);
-}
-
 function plusMarcaNome(n) {
     slideIndexMarcaNome = typeof n === "undefined" ? slideIndexMarcaNome + 1 : n;
     showSlideMarcasNome(slideIndexMarcaNome);
@@ -33,38 +21,10 @@ function plusMarcaNome(n) {
     carm = setTimeout(plusMarcaNome, carMarcaTime);
 }
 
-function currentDiv(n) {
-    showDivs(slideIndex = n);
-}
-
-function showDivs(id, n) {
-
-
-
-    let i;
-    let x = document.getElementsByClassName("mySlides");
-    let $slide = $(".mySlides, .mySlidesTitulo, .slide-social");
-    let dots = document.getElementsByClassName("demo");
-    if (n > x.length) {
-        slideIndex = 1
-    }
-    if (n < 1) {
-        slideIndex = x.length
-    }
-    for (i = 0; i < x.length; i++)
-        $slide[i].style.display = "none";
-
-    for (i = 0; i < dots.length; i++) {
-        dots[i].removeClass("color-white");
-    }
-    $slide[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].addClass("color-white");
-}
-
 function showSlideMarcasNome(n) {
     let i;
     let x = document.getElementsByClassName("slide-marcas-nomes-img");
-    let dots = document.getElementsByClassName("demo-slide-marcas-nome");
+    let $dots = $(".demo-slide-marcas-nome");
     if (n > x.length) {
         slideIndexMarcaNome = 1
     }
@@ -74,11 +34,11 @@ function showSlideMarcasNome(n) {
     for (i = 0; i < x.length; i++)
         x[i].style.display = "none";
 
-    for (i = 0; i < dots.length; i++)
-        dots[i].removeClass("color-white");
+    for (i = 0; i < $dots.length; i++)
+        $dots.eq(i).removeClass("color-white");
 
     x[slideIndexMarcaNome - 1].style.display = "block";
-    dots[slideIndexMarcaNome - 1].addClass("color-white");
+    $dots.eq(slideIndexMarcaNome - 1).addClass("color-white");
 }
 
 function plusSlideMarca(n) {
@@ -127,7 +87,6 @@ function getMap() {
 }
 
 $(function () {
-
     $('a[href^="#"]').on('click', function (event) {
         var target = $(this.getAttribute('href'));
         if (target.length) {
@@ -137,4 +96,55 @@ $(function () {
             }, 1000);
         }
     });
+    jssor_1_slider_init();
 });
+
+jssor_1_slider_init = function() {
+
+    var jssor_1_SlideshowTransitions = [
+        {$Duration:600,$Delay:40,$Cols:16,$Opacity:2}
+    ];
+
+    var jssor_1_options = {
+        $AutoPlay: 1,
+        $Idle: 5000,
+        $SlideshowOptions: {
+            $Class: $JssorSlideshowRunner$,
+            $Transitions: jssor_1_SlideshowTransitions
+        },
+        $ArrowNavigatorOptions: {
+            $Class: $JssorArrowNavigator$
+        },
+        $BulletNavigatorOptions: {
+            $Class: $JssorBulletNavigator$
+        }
+    };
+
+    var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+    /*#region responsive code begin*/
+
+    var MAX_WIDTH = 3000;
+
+    function ScaleSlider() {
+        var containerElement = jssor_1_slider.$Elmt.parentNode;
+        var containerWidth = containerElement.clientWidth;
+
+        if (containerWidth) {
+
+            var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+            jssor_1_slider.$ScaleWidth(expectedWidth);
+        }
+        else {
+            window.setTimeout(ScaleSlider, 30);
+        }
+    }
+
+    ScaleSlider();
+
+    $Jssor$.$AddEvent(window, "load", ScaleSlider);
+    $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+    $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+    /*#endregion responsive code end*/
+};

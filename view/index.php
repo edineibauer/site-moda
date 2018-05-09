@@ -24,7 +24,7 @@ require_once 'inc/slide.php';
                     marcas mais
                     desejadas</h2>
                 <p class="font-xxlarge s-font-medium upper color-text-grey-dark margin-0 font-bold">
-                    onde acontece os maiores negócios de moda no rio grande do sul e paraná
+                    onde acontecem os maiores negócios de moda no rio grande do sul e paraná
                 </p>
             </div>
         </section>
@@ -64,7 +64,7 @@ require_once 'inc/slide.php';
             <section class="padding-24 s-padding-0 align-center s-align-left">
                 <p class="color-text-grey upper s-font-small" id="empresa">espaço moderno, sofisticado e repleto de
                     lançamentos</p>
-                <h2 class="font-xxlarge s-font-medium upper text-theme-d font-bold margin-0 padding-8">showroom completo
+                <h2 class="font-xxlarge s-font-medium upper color-text-grey-dark-medium font-bold margin-0 padding-8">showroom completo
                     com as marcas
                     mais
                     desejadas para você potencializar seus negócios!</h2>
