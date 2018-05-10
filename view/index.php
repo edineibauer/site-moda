@@ -62,12 +62,12 @@ require_once 'inc/slide.php';
         <div class="col padding-64 hide-small"></div>
         <div class="col container-900 s-padding-left-32 s-padding-right-32">
             <section class="padding-24 s-padding-0 align-center s-align-left">
-                <p class="color-text-grey upper s-font-small" id="empresa">espaço moderno, sofisticado e repleto de
-                    lançamentos</p>
-                <h2 class="font-xxlarge s-font-medium upper color-text-grey-dark-medium font-bold margin-0 padding-8">showroom completo
-                    com as marcas
-                    mais
-                    desejadas para você potencializar seus negócios!</h2>
+                <p class="color-text-grey-dark font-small upper" id="empresa" style="letter-spacing: 5.3px">
+                    espaço moderno, sofisticado e repleto de lançamentos
+                </p>
+                <h2 class="font-xxlarge s-font-medium upper color-text-grey-dark margin-0 padding-8">
+                    showroom completo com as marcas mais desejadas para você potencializar seus negócios!
+                </h2>
             </section>
 
             <div class="col padding-12 s-padding-0">
@@ -120,21 +120,21 @@ require_once 'inc/slide.php';
 
     <div class="col showroom">
         <div class="col container-900">
-            <section class="col s12 m4 align-center">
-                <p class="upper color-text-grey-light font-small">visite</p>
-                <h3 class="upper color-text-white padding-0 font-bold s-font-large">Nossos Showrooms</h3>
-                <p class="color-text-grey-light font-small s-padding-left-32 s-padding-right-32"
-                   style="line-height: 22px;">
+            <section class="col s12 m4">
+                <p class="upper color-text-grey-light margin-0" style="letter-spacing: 5.6px">visite</p>
+                <h3 class="upper color-text-white padding-0 s-font-large" style="font-size: 30px">Nossos Showrooms</h3>
+                <p class="color-text-grey-light padding-16 s-padding-left-32 s-padding-right-32"
+                   style="line-height: 24px;">
                     A <?= SITENAME ?> possuí showrooms modernos e sofisticados, com excelênte infraestrutura para
                     expressar os valores das marcas e oferecer a melhor experiência aos visitantes. Estamos localizados
                     em pontos estratégicos nas capitais do Rio Grande do Sul e Paraná.
                 </p>
 
-                <div class="col padding-12 hide-small">
+                <!--<div class="col padding-12 hide-small align-center">
                     <button class="btn upper color-border-white border opacity hover-opacity-off hover-shadow"
                             style="margin: auto; float: initial">mais fotos
                     </button>
-                </div>
+                </div>-->
             </section>
             <div class="col s12 m8 padding-left">
                 <?php
@@ -154,7 +154,7 @@ require_once 'inc/slide.php';
 
     <div class="col color-white padding-64 s-padding-8">
         <div class="container-900">
-            <p class="upper color-text-grey-dark padding-16 align-center">instagram @HUBDAMODA</p>
+            <p class="upper color-text-grey-dark padding-16 align-center" style="letter-spacing: 5.3px">instagram @HUBDAMODA</p>
             <div class="col">
                 <?php
                 $read->exeRead("instagram", "ORDER BY id LIMIT 5");
