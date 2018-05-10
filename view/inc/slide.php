@@ -1,5 +1,5 @@
 <?php
-$read->exeRead("slide", "ORDER BY id DESC LIMIT 5");
+$read->exeRead("slide", "ORDER BY id DESC LIMIT 100");
 if ($read->getResult()) {
     $data['slide'] = $read->getResult();
     foreach ($data['slide'] as $i => $slide) {
