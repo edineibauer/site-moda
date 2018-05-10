@@ -31,7 +31,7 @@
                 </a>
             </ul>
         </div>
-        <div class="col s12 m5 padding-small margin-bottom hide-small">
+        {*<div class="col s12 m5 padding-small margin-bottom hide-small">
             <p class="upper font-small font-bold margin-0 margin-bottom">newsletter</p>
             <div class="col padding-small">
                 <div class="col" style="max-width: 65%;margin-right: 10px">
@@ -41,7 +41,7 @@
                     <button class="btn upper color-black opacity hover-opacity-off border color-border-white">enviar</button>
                 </div>
             </div>
-        </div>
+        </div>*}
 
     </div>
     <div class="col padding-24"></div>
