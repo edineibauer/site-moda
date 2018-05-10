@@ -121,8 +121,8 @@ require_once 'inc/slide.php';
     <div class="col showroom">
         <div class="col container-900">
             <section class="col s12 m4">
-                <p class="upper color-text-grey-light margin-0" style="letter-spacing: 5.6px">visite</p>
-                <h3 class="upper color-text-white padding-0 s-font-large" style="font-size: 30px">Nossos Showrooms</h3>
+                <p class="upper color-text-grey-light margin-0 s-padding-left-32" style="letter-spacing: 5.6px">visite</p>
+                <h3 class="upper color-text-white padding-0 s-font-large s-padding-left-32" style="font-size: 30px">Nossos Showrooms</h3>
                 <p class="color-text-grey-light padding-16 s-padding-left-32 s-padding-right-32"
                    style="line-height: 24px;">
                     A <?= SITENAME ?> possuí showrooms modernos e sofisticados, com excelênte infraestrutura para
@@ -136,7 +136,7 @@ require_once 'inc/slide.php';
                     </button>
                 </div>-->
             </section>
-            <div class="col s12 m8 padding-left">
+            <div class="col s12 m8 padding-left s-padding-right-16">
                 <?php
                 $read->exeRead("showroom", "ORDER BY id DESC LIMIT 7");
                 if ($read->getResult()) {
