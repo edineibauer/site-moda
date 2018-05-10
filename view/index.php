@@ -176,7 +176,7 @@ require_once 'inc/slide.php';
         <div class="col s12 m6 padding-64 s-padding-48 color-grey-light">
             <p class="upper color-text-grey font-small align-center">contato</p>
             <p class="upper color-text-grey-dark font-xlarge s-font-large font-bold align-center margin-0">
-                lojista, entre em contato
+                entre em contato
             </p>
 
             <div class="col padding-left-32 padding-right-32 s-padding-left-16 s-padding-right-16">
