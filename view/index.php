@@ -157,7 +157,7 @@ require_once 'inc/slide.php';
             <p class="upper color-text-grey-dark padding-16 align-center" style="letter-spacing: 5.3px">instagram @HUBDAMODA</p>
             <div class="col">
                 <?php
-                $read->exeRead("instagram", "ORDER BY id LIMIT 5");
+                $read->exeRead("instagram", "ORDER BY id DSEC LIMIT 5");
                 if ($read->getResult()) {
                     foreach ($read->getResult() as $foto) {
                         $instagram['images'][] = str_replace('\\', '/', json_decode($foto['imagem'], true)[0]['url']);
