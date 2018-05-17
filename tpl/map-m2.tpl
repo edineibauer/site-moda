@@ -16,9 +16,9 @@
             </div>
         </div>
 
-        {*<div class="col">
+        <div class="col">
             {$e.map}
-        </div>*}
+        </div>
 
         <div class="col container padding-16 color-text-grey"
              style="border:solid 2px #EEEEEE; border-radius: 15px 0 15px 0">

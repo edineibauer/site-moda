@@ -89,7 +89,7 @@ require_once 'inc/slide.php';
                 <div class="col padding-8"></div>
                 <?php
                 $read->exeRead("descricao_da_empresa", "ORDER BY id LIMIT 3");
-                if($read->getResult()) {
+                if ($read->getResult()) {
                     foreach ($read->getResult() as $item) {
                         $item['imagem'] = \Helpers\Helper::convertImageJson($item['imagem']);
                         $tpl->show("descricao_icon", $item);
@@ -121,8 +121,10 @@ require_once 'inc/slide.php';
     <div class="col showroom">
         <div class="col container-900">
             <section class="col s12 m4">
-                <p class="upper color-text-grey-light margin-0 s-padding-left-32" style="letter-spacing: 5.6px">visite</p>
-                <h3 class="upper color-text-white padding-0 s-font-large s-padding-left-32" style="font-size: 30px">Nossos Showrooms</h3>
+                <p class="upper color-text-grey-light margin-0 s-padding-left-32" style="letter-spacing: 5.6px">
+                    visite</p>
+                <h3 class="upper color-text-white padding-0 s-font-large s-padding-left-32" style="font-size: 30px">
+                    Nossos Showrooms</h3>
                 <p class="color-text-grey-light padding-16 s-padding-left-32 s-padding-right-32"
                    style="line-height: 24px;">
                     A <?= SITENAME ?> possuí showrooms modernos e sofisticados, com excelênte infraestrutura para
@@ -154,7 +156,8 @@ require_once 'inc/slide.php';
 
     <div class="col color-white padding-64 s-padding-8">
         <div class="container-900">
-            <p class="upper color-text-grey-dark padding-16 align-center" style="letter-spacing: 5.3px">instagram @HUBDAMODA</p>
+            <p class="upper color-text-grey-dark padding-16 align-center" style="letter-spacing: 5.3px">instagram
+                @HUBDAMODA</p>
             <div class="col">
                 <?php
                 $read->exeRead("instagram", "ORDER BY id DESC LIMIT 5");
@@ -202,24 +205,27 @@ require_once 'inc/slide.php';
                 foreach ($read->getResult() as $i => $end)
                     $lojas[$i] = \Entity\Entity::read("lojas", $end['id']);
             }
-            /*
-                        foreach ($lojas as $i => $loja) {
-                            $map = new Map();
-                            $map->setCenter(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude']));
-                            $map->setMapOption('zoom', 18);
-                            $map->setMapOption('width', 1500);
-                            $map->setMapOption('height', 500);
-                            $map->setHtmlAttribute("width", "1500");
-                            $map->setStylesheetOption("width", "100%");
-                            $map->setStylesheetOption("height", "300px");
-                            $map->getOverlayManager()->addMarker(new Marker(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude'])));
 
-                            $mapHelper = MapHelperBuilder::create()->build();
-                            $apiHelper = ApiHelperBuilder::create()->setKey('AIzaSyDDITs_UW4aZ-bTiS9IUlu3yzk958oW1QU')->build();
+            $mapHelper = MapHelperBuilder::create()->build();
+            $apiHelper = ApiHelperBuilder::create()->setKey('AIzaSyCOsJtj3Hhf8JDo2SC8wRk3vpFw3kqAjQ8')->build();
 
-                            $lojas[$i]['map'] = $mapHelper->render($map);
-                            $lojas[$i]['map'] .= $apiHelper->render([$map]);
-                        }*/
+            foreach ($lojas as $i => $loja) {
+                $lojas[$i]['map'] = "";
+                if(!empty($loja['endereco']['cep']['latitude']) && !empty($loja['endereco']['cep']['longitude'])) {
+                    $map = new Map();
+                    $map->setCenter(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude']));
+                    $map->setMapOption('zoom', 13);
+                    $map->setMapOption('width', 600);
+                    $map->setMapOption('height', 300);
+                    $map->setHtmlAttribute("width", "600");
+                    $map->setStylesheetOption("width", "100%");
+                    $map->setStylesheetOption("height", "300px");
+                    $map->getOverlayManager()->addMarker(new Marker(new Coordinate($loja['endereco']['cep']['latitude'], $loja['endereco']['cep']['longitude'])));
+
+                    $lojas[$i]['map'] = $mapHelper->render($map);
+                    $lojas[$i]['map'] .= $apiHelper->render([$map]);
+                }
+            }
 
             $mapData['lojas'] = $lojas;
             $mapData['homedev'] = HOMEDEV;
